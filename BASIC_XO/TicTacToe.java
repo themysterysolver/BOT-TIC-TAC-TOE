@@ -1,3 +1,4 @@
+package "BASICXO";
 import java.util.Scanner;
 public class TicTacToe {
     private static char[] board=new char[9];
