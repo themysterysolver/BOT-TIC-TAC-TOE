@@ -28,6 +28,7 @@ public class gamer {
         board[idx]=c;
     }
     void displayBoard(){
+
         System.out.println(board);
     }
 
@@ -39,9 +40,69 @@ public class gamer {
     //main bot logic!
     public void botMove() {
         //PRIORITY-1:if my win exist,I play it!
+        if(winningMove('o'))return;
         //PRIORITY-2:if he is going to win,I should block it!
-        //PRIORITY-3:if he I can fork,I play the fork,so I can win next!
+        if(winningMove('x'))return;
+        //PRIORITY-3:if I can fork,I play the fork,so I can win next!
+        if(playFork('o'))return;
         //PRIORITY-4:if he is going to fork me,I should stop it!
+        if(playFork('x'))return;
         //PRIORITY-5:Aim to get consecutive next 2 vacant spaces+centers+corners(over mids)!!
+    }
+
+    private boolean playFork(char c) {
+        int found=-1;
+        for(int i=0;i<9;i++) {
+            if (board[i] == '-') {
+                insertMove(i, c);
+                for (int j = 0; j < 9; j++) {
+                    if(board[j]=='-') {
+                        insertMove(j, c);
+                    }
+                    for(int k=0;k<9;k++){
+                        if(board[k]=='-'){
+                            insertMove(k,c);
+                            if(gameOver(c)){
+                                found=k;
+                                break;
+                            }
+                            removeMove(k);
+                        }
+                    }
+                    if(found!=-1){
+                        break;
+                    }
+                    removeMove(j);
+                }
+                if(found!=-1){
+                    break;
+                }
+                removeMove(i);
+            }
+        }
+        if(found>0 && found<9){
+            insertMove(found,'o');
+            return true;
+        }
+        return false;
+    }
+
+    private boolean winningMove(char c){
+        for(int i=0;i<9;i++){
+            if(board[i]=='-') {
+                insertMove(i, c);
+                if (gameOver(c)){
+                    removeMove(i);
+                    insertMove(i,'o');
+                    return true;
+                }
+                removeMove(i);
+            }
+        }
+        return false;
+    }
+
+    private void removeMove(int i) {
+        board[i]='-';
     }
 }
