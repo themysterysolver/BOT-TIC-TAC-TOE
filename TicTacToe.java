@@ -7,10 +7,14 @@ public class TicTacToe {
         char currPLayer='x';
         boolean gamePlay=true;
         Scanner input=new Scanner(System.in);
-        int i=0;
+        int i=0,count=0;
         while(true){
             System.out.println("Enter a move:");
             i=input.nextInt();
+            if(i<0 || i>8|| board[i]!='-'){
+                System.out.println("INVALID MOVE!");
+                continue;
+            }
             insertMove(i,currPLayer);
             gamePlay=gameOver(currPLayer);
             display();
@@ -21,7 +25,16 @@ public class TicTacToe {
                 System.out.println("winner is "+currPLayer);
                 break;
             }
+            count++;
+            if(isDraw(count)){
+                System.out.println("It's a draw!");
+                break;
+            }
         }
+    }
+
+    private static boolean isDraw(int count) {
+        return count==9;
     }
 
     private static void display() {
@@ -45,7 +58,7 @@ public class TicTacToe {
     }
 
     private static void insertMove(int idx,char c){
-         board[idx]=c;
+            board[idx]=c;
     }
     private static void displayBoard(){
         System.out.println(board);
