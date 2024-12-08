@@ -48,43 +48,52 @@ public class gamer {
         //PRIORITY-4:if he is going to fork me,I should stop it!
         if(playFork('x'))return;
         //PRIORITY-5:Aim to get consecutive next 2 vacant spaces+centers+corners(over mids)!!
+        optimalplay();
     }
 
-    private boolean playFork(char c) {
-        int found=-1;
-        for(int i=0;i<9;i++) {
+    private void optimalplay() {
+        if(board[4]=='-') {
+            insertMove(4, 'o');
+            return;
+        }
+        int[] corners={0,2,6,8};
+        for (int i : corners) {
             if (board[i] == '-') {
-                insertMove(i, c);
-                for (int j = 0; j < 9; j++) {
-                    if(board[j]=='-') {
-                        insertMove(j, c);
-                    }
-                    for(int k=0;k<9;k++){
-                        if(board[k]=='-'){
-                            insertMove(k,c);
-                            if(gameOver(c)){
-                                found=k;
-                                break;
-                            }
-                            removeMove(k);
-                        }
-                    }
-                    if(found!=-1){
-                        break;
-                    }
-                    removeMove(j);
-                }
-                if(found!=-1){
-                    break;
+                insertMove(i, 'o');
+                return;
+            }
+        }
+    }
+
+
+
+    private boolean playFork(char c) {
+        for(int i=0;i<9;i++){
+            if(board[i]=='-') {
+                insertMove(i,c);
+                if(noOfWinning(c) > 1) {
+                    removeMove(i);
+                    insertMove(i,'o');
+                    return true;
                 }
                 removeMove(i);
             }
         }
-        if(found>0 && found<9){
-            insertMove(found,'o');
-            return true;
-        }
         return false;
+    }
+
+    private int noOfWinning(char c) {
+        int count=0;
+        for(int i=0;i<9;i++){
+            if(board[i]=='-'){
+                insertMove(i,c);
+                if(gameOver(c)){
+                    count++;
+                }
+                removeMove(i);
+            }
+        }
+        return count;
     }
 
     private boolean winningMove(char c){

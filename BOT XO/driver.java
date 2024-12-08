@@ -19,7 +19,13 @@ public class driver {
             gamePlay=g.gameOver(currPLayer);
             g.display();
             if(!gamePlay){
+                //System.out.println("Bot is playing!!BOT MOVE!!");
                 g.botMove();
+                if(g.gameOver('o')){
+                    System.out.println("Winner is O");
+                    return;
+                }
+                g.display();
             }
             else{
                 System.out.println("winner is "+currPLayer);
