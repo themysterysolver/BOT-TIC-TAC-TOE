@@ -16,6 +16,7 @@ public class driver extends Application {
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/game.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("XO BOT");
+        stage.setResizable(false);
         stage.show();
     }
 }
