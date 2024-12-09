@@ -1,0 +1,11 @@
+.button{
+    -fx-font-size:50px;
+    -fx-border-radius:5px;
+    -fx-font-family:'Roboto',cursive;
+}
+.anchor{
+    -fx-font-family:'Finger Paint',cursive;
+}
+#header{
+    -fx-color:red;
+}

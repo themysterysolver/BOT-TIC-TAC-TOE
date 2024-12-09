@@ -18,6 +18,6 @@
       <Button onAction="#onClick" fx:id="btn7" layoutX="110.0" layoutY="216.0" mnemonicParsing="false" prefHeight="108.0" prefWidth="110.0"/>
       <Button onAction="#onClick" fx:id="btn8" layoutX="220.0" layoutY="216.0" mnemonicParsing="false" prefHeight="108.0" prefWidth="110.0"/>
       <Separator layoutX="330.0" orientation="VERTICAL" prefHeight="324.0" prefWidth="4.0" />
-      <Label layoutX="399.0" layoutY="29.0" text="XO BOT" />
+      <Label fx:id="header" layoutX="399.0" layoutY="29.0" text="XO BOT" />
    </children>
 </AnchorPane>

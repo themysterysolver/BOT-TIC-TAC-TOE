@@ -1,5 +1,9 @@
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 
 import java.awt.event.ActionEvent;
 public class Controller {
@@ -30,6 +34,7 @@ public class Controller {
     private void initialize(){
         buttons=new Button[]{btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8};
         g=new gamer();
+        g.populateBoard();
         updateBoard();
     }
     @FXML
@@ -37,6 +42,24 @@ public class Controller {
         Button b=(Button)e.getSource();
         int idx=getIdx(b);
         System.out.println("Button clicked:"+idx);
+        g.insertMove(idx,'x');
+        if(g.gameOver('x')){
+            highlightSquares();
+            updateBoard();
+        }
+        g.botMove();
+        if(g.gameOver('o')){
+            highlightSquares();
+            updateBoard();
+        }
+        updateBoard();
+    }
+
+    private void highlightSquares() {
+        int[] winningBlock=g.winBlock();
+        for(int i=0;i<winningBlock.length;i++){
+            buttons[winningBlock[i]].setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY,null)));
+        }
     }
 
     private int getIdx(Button b) {
@@ -45,8 +68,14 @@ public class Controller {
 
     private void updateBoard() {
         char[] board=g.board;
+        g.displayBoard();
         for(int i=0;i<board.length;i++){
-            buttons[i].setText(String.valueOf(board[i]));
+            if(board[i]!='-') {
+                buttons[i].setText(String.valueOf(board[i]));
+            }
+            if(board[i]!='-') {
+                buttons[i].setDisable(true);
+            }
         }
     }
 }

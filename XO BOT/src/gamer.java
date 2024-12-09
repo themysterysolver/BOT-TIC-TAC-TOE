@@ -28,7 +28,6 @@ public class gamer {
         board[idx]=c;
     }
     void displayBoard(){
-
         System.out.println(board);
     }
 
@@ -62,6 +61,7 @@ public class gamer {
             for(int i:middle){
                 if(board[i]=='-'){
                     insertMove(i,'o');
+
                     return true;
                 }
             }
@@ -129,5 +129,22 @@ public class gamer {
 
     private void removeMove(int i) {
         board[i]='-';
+    }
+
+    public int[] winBlock() {
+        int[][] winning={{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
+        char curr='x';
+        for(int[] win:winning){
+            if(curr==board[win[0]] && board[win[1]]==curr && board[win[2]]==curr){
+                return win;
+            }
+        }
+        curr='o';
+        for(int[] win:winning){
+            if(curr==board[win[0]] && board[win[1]]==curr && board[win[2]]==curr){
+                return win;
+            }
+        }
+        return new int[3];
     }
 }
