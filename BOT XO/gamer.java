@@ -43,12 +43,30 @@ public class gamer {
         if(winningMove('o'))return;
         //PRIORITY-2:if he is going to win,I should block it!
         if(winningMove('x'))return;
-        //PRIORITY-3:if I can fork,I play the fork,so I can win next!
+        //PRIORITY-3:if I occupy middle,to avoid double dorks!
+        if(middle('o'))return;
+        //PRIORITY-4:if I can fork,I play the fork,so I can win next!
         if(playFork('o'))return;
-        //PRIORITY-4:if he is going to fork me,I should stop it!
-        if(playFork('x'))return;
-        //PRIORITY-5:Aim to get consecutive next 2 vacant spaces+centers+corners(over mids)!!
+        //PRIORITY-5:if he is going to fork me,I should stop it!
+        if(playFork('x')){
+            System.out.println("CHECKED!");
+            return;
+        }
+        //PRIORITY-6:Aim to get consecutive next 2 vacant spaces+centers+corners(over mids)!!
         optimalplay();
+    }
+
+    private boolean middle(char o) {
+        int[] middle={1,3,5,7};
+        if(board[4]=='o'){
+            for(int i:middle){
+                if(board[i]=='-'){
+                    insertMove(i,'o');
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void optimalplay() {
@@ -64,8 +82,6 @@ public class gamer {
             }
         }
     }
-
-
 
     private boolean playFork(char c) {
         for(int i=0;i<9;i++){
