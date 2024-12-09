@@ -1,11 +1,14 @@
 .button{
     -fx-font-size:50px;
     -fx-border-radius:5px;
-    -fx-font-family:'Roboto',cursive;
+    -fx-font-family:'Courier New', monospace;
 }
 .anchor{
-    -fx-font-family:'Finger Paint',cursive;
+    -fx-font-family: 'Courier New', monospace;
 }
 #header{
-    -fx-color:red;
+    -fx-text-fill:black;
+    -fx-font-size:15px;
+    -fx-font-weight:bold;
+    -fx-font-family: 'Courier New', monospace;
 }

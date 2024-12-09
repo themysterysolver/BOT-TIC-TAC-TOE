@@ -27,9 +27,7 @@ public class Controller {
     Button btn8;
     private Button[] buttons;
     private gamer g;
-    public Controller(){
 
-    }
     @FXML
     private void initialize(){
         buttons=new Button[]{btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8};
@@ -46,13 +44,23 @@ public class Controller {
         if(g.gameOver('x')){
             highlightSquares();
             updateBoard();
+            allDisbled();
         }
         g.botMove();
         if(g.gameOver('o')){
             highlightSquares();
             updateBoard();
+            allDisbled();
         }
         updateBoard();
+    }
+
+    private void allDisbled() {
+        char[] board=g.board;
+        g.displayBoard();
+        for(int i=0;i<board.length;i++){
+                buttons[i].setDisable(true);
+        }
     }
 
     private void highlightSquares() {
