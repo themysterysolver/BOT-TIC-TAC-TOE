@@ -8,17 +8,27 @@
 #startMe,#Draw,#reset{
     -fx-font-size:12px;
     -fx-text-fill:rgb(225,225,225);
-    -fx-background-color:rgb(0,0,0);
+    -fx-background-color:rgb(64, 227, 39);
+}
+#startMe{
+    -fx-font-size:13px;
+    -fx-font-weight:bold;
 }
 #Controller{
     -fx-background-color:rgb(27, 44, 62);
     -fx-font-family: 'Courier New', monospace;
 }
 #header{
-    -fx-text-fill:black;
+    -fx-text-fill:rgb(0,100,0);
     -fx-font-size:15px;
     -fx-font-weight:bold;
     -fx-font-family: 'Courier New', monospace;
+}
+#result{
+    -fx-text-fill:rgb(0,100,0);
+    -fx-font-size:15px;
+     -fx-font-weight:bold;
+     -fx-font-family: 'Courier New', monospace;
 }
 .winning-button {
     -fx-background-color: #00b047; /* Green */

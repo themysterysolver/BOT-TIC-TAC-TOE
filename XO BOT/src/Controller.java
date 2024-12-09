@@ -1,6 +1,8 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -31,6 +33,8 @@ public class Controller {
     Button startMe;
     @FXML
     Button Draw,reset;
+    @FXML
+    Label result;
     private Button[] buttons;
     private gamer g;
     private int count=0;
@@ -42,6 +46,7 @@ public class Controller {
         updateBoard();
         Draw.setVisible(false);
         reset.setVisible(false);
+        result.setVisible(false);
     }
 
     @FXML
@@ -53,21 +58,31 @@ public class Controller {
             g.insertMove(idx,'x');
             if(g.gameOver('x')){
                 applyGameOver('x');
+                //popUp("X won the game!");
                 return;
             }
             g.botMove();
             count+=2;
             startMe.setVisible(false);
             if(g.gameOver('o')){
-                applyGameOver('x');
+                applyGameOver('o');
+                //popUp("O won the game!");
                 return;
             }
             updateBoard();
             System.out.println(count);
-            if(count>9){
+            if(count>=9){
                 declareDraw();
             }
         }
+    }
+
+    private void popUp(String s) {
+        Alert a=new Alert(Alert.AlertType.INFORMATION);
+        a.setTitle("GAME RESULT");
+        a.setHeaderText(null);
+        a.setContentText(s);
+        a.showAndWait();
     }
 
     private void applyGameOver(char x) {
@@ -77,6 +92,8 @@ public class Controller {
         for(int i=0;i<g.board.length;i++){
             g.board[i]='z';
         }
+        result.setText(x+" won the game!!");
+        result.setVisible(true);
     }
 
     private void declareDraw() {
@@ -133,5 +150,6 @@ public class Controller {
         startMe.setVisible(true);
         Draw.setVisible(false);
         reset.setVisible(false);
+        result.setVisible(false);
     }
 }
