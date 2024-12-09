@@ -18,13 +18,13 @@ XO BOT 🤖 is a simple yet engaging Tic-Tac-Toe game built using JavaFX. The ga
 ## Screenshots
 
 ### Initial GUI 
-![Initail setup!](Screenshots/Screenshot1.jpeg) 
+![Initail setup!](Screenshots/Screenshot3.jpeg) 
 
 ### Bot dominates!
 ![Bot wins!](Screenshots/Screenshot2.jpeg)<!-- Replace with actual screenshot path -->
 
 ### Humanplays optimally!!
-![Human plays optimally!](Screenshots/Screenshot3.jpeg)
+![Human plays optimally!](Screenshots/Screenshot1.jpeg)
 
 ## Technologies Used
 - Java
