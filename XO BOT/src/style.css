@@ -20,3 +20,10 @@
     -fx-font-weight:bold;
     -fx-font-family: 'Courier New', monospace;
 }
+.winning-button {
+    -fx-background-color: #00b047; /* Green */
+}
+.usual-button{
+     -fx-text-fill:rgb(225,223,86);
+      -fx-background-color:rgb(60,179,113);
+}

@@ -142,9 +142,10 @@ public class gamer {
         curr='o';
         for(int[] win:winning){
             if(curr==board[win[0]] && board[win[1]]==curr && board[win[2]]==curr){
+                System.out.println();
                 return win;
             }
         }
-        return new int[3];
+        return new int[0];
     }
 }

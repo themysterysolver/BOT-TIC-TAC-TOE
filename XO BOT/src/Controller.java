@@ -95,8 +95,8 @@ public class Controller {
         int[] winningBlock=g.winBlock();
         System.out.println(winningBlock.length);
         for(int i=0;i<winningBlock.length;i++){
-            System.out.println(winningBlock[i]);
-            buttons[winningBlock[i]].setBackground(Background.fill(rgb(0, 176, 71)));
+            System.out.println("winning blocks are:"+winningBlock[i]);
+            buttons[winningBlock[i]].getStyleClass().add("winning-button");
         }
     }
     private int getIdx(Button b) {
@@ -127,8 +127,7 @@ public class Controller {
         updateBoard();
         for (Button button : buttons) {
             button.setText(""); // Clear text
-            button.setDisable(false); // Enable button
-            button.setBackground(Background.fill(rgb(60,179,113))); // Reset background
+            button.getStyleClass().remove("winning-button");
         }
         count=0;
         startMe.setVisible(true);
