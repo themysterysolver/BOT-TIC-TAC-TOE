@@ -6,6 +6,8 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
+import static javafx.scene.paint.Color.rgb;
+
 public class Controller {
     @FXML
     Button btn0;
@@ -51,12 +53,14 @@ public class Controller {
             g.insertMove(idx,'x');
             if(g.gameOver('x')){
                 applyGameOver('x');
+                return;
             }
             g.botMove();
             count+=2;
             startMe.setVisible(false);
             if(g.gameOver('o')){
                 applyGameOver('x');
+                return;
             }
             updateBoard();
             System.out.println(count);
@@ -70,6 +74,9 @@ public class Controller {
         reset.setVisible(true);
         highlightSquares();
         updateBoard();
+        for(int i=0;i<g.board.length;i++){
+            g.board[i]='z';
+        }
     }
 
     private void declareDraw() {
@@ -89,7 +96,7 @@ public class Controller {
         System.out.println(winningBlock.length);
         for(int i=0;i<winningBlock.length;i++){
             System.out.println(winningBlock[i]);
-            buttons[winningBlock[i]].setBackground(new Background(new BackgroundFill(Color.rgb(0, 176, 71), CornerRadii.EMPTY,null)));
+            buttons[winningBlock[i]].setBackground(Background.fill(rgb(0, 176, 71)));
         }
     }
     private int getIdx(Button b) {
@@ -121,7 +128,7 @@ public class Controller {
         for (Button button : buttons) {
             button.setText(""); // Clear text
             button.setDisable(false); // Enable button
-            button.setBackground(null); // Reset background
+            button.setBackground(Background.fill(rgb(60,179,113))); // Reset background
         }
         count=0;
         startMe.setVisible(true);
